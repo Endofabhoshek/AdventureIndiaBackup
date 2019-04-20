@@ -17,6 +17,9 @@ $dataemail= mysqli_fetch_array($fetch_user,MYSQLI_ASSOC);
 $fb="fb";
 $fetchfb_user= mysqli_query($conn,"SELECT * FROM `app_placesmain`   ");
 $userCountfb = mysqli_num_rows($fetchfb_user);
+
+$fetch_bookings= mysqli_query($conn,"SELECT * FROM `bookings` ");
+$bookingCount = mysqli_num_rows($fetch_bookings);
 //$datafb= mysqli_fetch_array($fetchfb_user,MYSQLI_ASSOC);
 //////////////////////////////////////////GOOGLE USERS////////////////////////////////////
 

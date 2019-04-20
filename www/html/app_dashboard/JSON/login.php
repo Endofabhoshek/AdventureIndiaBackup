@@ -1,49 +1,46 @@
 <?php
 include 'config.php';
  
-class login{
-
-    public function __constructor()
-    {
-        
-    }
-
-    public function isUserExits($email, $password)
-    {
-        $dbObject = new DBController();
-        $sql = "SELECT * from  `user` where email = $email";
-        $result= mysqli_query($dbObject->connectDB(), $sql);
-        if(count($result) > 0){        
-            return true;
-        }
-        return false;        
-    }
-
-    public function addNewUser($email, $password){
-        $dbObject = new DBController();
-        if(!$this->isUserExist($email, $password)){
-            $sql = "Insert into user (email, password) values ('$email', '$password')";
-            $result = mysqli_query($dbObject->connectDB(), $sql);
-            if($result){
-                return true;
-            }
-            return false;		
-        }
-    }
-}
+$username=$_POST['username'];
+$password=$_POST['password'];
 
 
-
-
-
-// $sql="SELECT * FROM `app_placesmain` order by id DESC ";
-//           $check= mysqli_query($conn, $sql);
-// while ($row = mysqli_fetch_array($check,MYSQLI_ASSOC)) {
-
- 
-//   $json []= $row;
-//   }
-  
-//   $json1= array("place"=>$json);
-// echo json_encode($json1,JSON_UNESCAPED_SLASHES);
- 
+	if(!empty($username) || !empty($email))
+	{
+		$sqlCheckUser = "SELECT * FROM `user` where `username` = '". $username ."'";
+		$sqlCheckUser= mysqli_query($conn, $sqlCheckUser);
+		$row_count = mysqli_num_rows($sqlCheckUser);
+		if($row_count < 0){
+		      $minfo = array("Success"=>'false', "Message"=>'User does not exists!');
+		      $jsondata = json_encode($minfo);
+		}
+		
+		$sqlCheckPassword = "SELECT * FROM `user` where `username` = '". $username ."' and  `password` = '". $password ."' ";
+		$sqlCheckPassword= mysqli_query($conn, $sqlCheckPassword);
+		$row_countPassword = mysqli_num_rows($sqlCheckPassword);
+		if($row_countPassword == 0){
+		      $minfo = array("Success"=>'false', "Message"=>'Incorrect Username or password!');
+		      $jsondata = json_encode($minfo);
+		}
+		else{
+		$sqlCheckPasswordMatch = "SELECT `username`, `email`, `gender`, `id` FROM `user` where `username` = '". $username ."' and  `password` = '". $password ."' ";
+		$sqlCheckPasswordMatch= mysqli_query($conn, $sqlCheckPasswordMatch);
+		$row_countPasswordMatch = mysqli_num_rows($sqlCheckPasswordMatch);
+		$row = mysqli_fetch_row($sqlCheckPasswordMatch);
+		$username = $row[0] ;
+		$email =  $row[1];
+		$gender =  $row[2];
+		$id =  $row[3];
+		if($row_countPasswordMatch > 0){
+			$minfo = array("Success"=>'true', "Message"=>'Successfully Logged In!',"username"=>$username,"email"=>$email,"gender"=>$gender, "id" =>$id);
+		      $jsondata = json_encode($minfo);
+		}
+		      
+		}
+	}
+	else{
+		$minfo = array("Success"=>'false', "Message"=>'Incorrect Username or password!');
+		      $jsondata = json_encode($minfo);
+	}
+	print_r($jsondata);
+	exit(); 

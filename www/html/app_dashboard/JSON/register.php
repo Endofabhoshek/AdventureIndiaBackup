@@ -12,7 +12,7 @@ $gender=$_POST['gender'];
 		$sqlCheckUser= mysqli_query($conn, $sqlCheckUser);
 		$row_count = mysqli_num_rows($sqlCheckUser);
 		if($row_count > 0){
-		      $minfo = array("Success"=>'flase', "Message"=>'User Already Exists!');
+		      $minfo = array("Success"=>'false', "Message"=>'User Already Exists!');
 		      $jsondata = json_encode($minfo);
 		}
 		else{
@@ -30,7 +30,7 @@ $gender=$_POST['gender'];
 
 	}
 	else{
-		$minfo = array("Success"=>'flase', "Message"=>'User Already Exists!');
+		$minfo = array("Success"=>'false', "Message"=>'User Already Exists!');
 		      $jsondata = json_encode($minfo);
 	}
 	print_r($jsondata);
