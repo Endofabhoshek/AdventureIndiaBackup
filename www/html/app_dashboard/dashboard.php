@@ -45,7 +45,7 @@
             <div class="icon">
               <i class="fa fa-list-ol fa-6"></i>
             </div>
-            <a href="category.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="bookings.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

@@ -24,7 +24,7 @@
                  <br>
             <!--<h1>hello</h1>-->
             <?php
-           $sql="SELECT * FROM `app_category` order by cat_id DESC ";
+           $sql="SELECT * FROM `bookings` order by 1 DESC ";
          // var_dump($sql);
           $check= mysqli_query($conn, $sql);
           $resultcheck= mysqli_fetch_array($check,MYSQLI_BOTH);
@@ -48,7 +48,7 @@ function getresult(url) {
 }
 function changePagination(option) {
 	if(option!= "") {
-		getresult("getresult.php");
+		getresult("bookingresult.php");
 	}
 }
 </script>
@@ -72,7 +72,7 @@ function changePagination(option) {
 	</div>
 </div>
 <script>
-getresult("getresult.php");
+getresult("bookingresult.php");
 </script>
 
 
@@ -95,23 +95,23 @@ getresult("getresult.php");
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Category</h4>
+        <h4 class="modal-title">Add New Booking</h4>
       </div>
       <div class="modal-body">
         
           <form role="form" action="add-cat.php" method="POST" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Category Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Category Name" name="catname" required="required">
+                  <label for="exampleInputEmail1">Booking Name</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Booking name" name="catname" required="required">
                 </div>
                 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="exampleInputFile">Category Image</label>
                   <input type="file" id="exampleInputFile" name="catimg" required>
 
                   <p class="help-block">Please upload gif,jpg,jpeg,bmp,png files only.</p>
-                </div>
+                </div> -->
                 
               </div>
         
